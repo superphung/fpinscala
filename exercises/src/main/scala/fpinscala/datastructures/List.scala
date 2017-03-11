@@ -51,12 +51,16 @@ object List { // `List` companion object. Contains functions for creating and wo
 
 
   def tail[A](l: List[A]): List[A] = 
-  l match {
-    case Nil => l
-    case Cons(h, t) => t
-  }
+    l match {
+      case Nil => l
+      case Cons(h, t) => t
+    }
 
-  def setHead[A](l: List[A], h: A): List[A] = ???
+  def setHead[A](l: List[A], h: A): List[A] =
+    l match {
+      case Nil => Cons(h, Nil)
+      case Cons(_, t) => Cons(h, t)
+    }
 
   def drop[A](l: List[A], n: Int): List[A] = ???
 
@@ -69,4 +73,12 @@ object List { // `List` companion object. Contains functions for creating and wo
   def foldLeft[A,B](l: List[A], z: B)(f: (B, A) => B): B = ???
 
   def map[A,B](l: List[A])(f: A => B): List[B] = ???
+}
+
+object TestList {
+  import List._
+
+  def main(args: Array[String]): Unit = {
+    println(setHead(List(1, 2), 3))
+  }
 }
